@@ -1,2 +1,2 @@
-# game-tier-list-remake
+# Game TierList Redux
 Recreation of my game tier-list
