@@ -26,6 +26,7 @@ packages/
 ## Getting started
 
 Requirements: Node 22+, pnpm 10 (`corepack enable` picks the version from `package.json`).
+Use pnpm only: `npm install` is blocked, and only `pnpm-lock.yaml` is committed. If `corepack enable` needs admin rights, `npm install -g pnpm@10` works too.
 
 ```sh
 pnpm install

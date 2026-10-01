@@ -1,4 +1,7 @@
 node_modules/
+# pnpm only: other lockfiles are never committed
+package-lock.json
+yarn.lock
 dist/
 coverage/
 .wrangler/
