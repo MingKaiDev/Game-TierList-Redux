@@ -7,6 +7,7 @@
     "node": ">=22"
   },
   "scripts": {
+    "preinstall": "npx only-allow pnpm",
     "check": "pnpm format:check && pnpm lint && pnpm typecheck && pnpm test",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
