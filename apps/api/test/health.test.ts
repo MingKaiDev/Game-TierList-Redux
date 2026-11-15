@@ -12,7 +12,7 @@ describe('GET /api/v1/health', () => {
     expect(res.headers.get('cache-control')).toBe('no-store')
     expect(res.headers.get('x-request-id')).toBeTruthy()
     const body = await res.json<HealthResponse>()
-    expect(body).toEqual({ status: 'ok', db: 'ok', version: 'dev', env: 'local' })
+    expect(body).toEqual({ status: 'ok', version: 'dev', env: 'local' })
   })
 })
 

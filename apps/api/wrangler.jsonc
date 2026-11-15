@@ -10,26 +10,9 @@
     "VERSION": "dev",
     "ALLOWED_ORIGINS": "http://localhost:5173",
   },
-  // Local dev and tests use a local SQLite copy (.wrangler/state), never the remote DB.
-  "d1_databases": [
-    {
-      "binding": "DB",
-      "database_name": "gtl-staging",
-      "database_id": "ee9825df-0fb4-46ab-9802-5b6e23dfa0d8",
-      "migrations_dir": "migrations",
-    },
-  ],
   "env": {
     "staging": {
       "name": "gtl-api-staging",
-      "d1_databases": [
-        {
-          "binding": "DB",
-          "database_name": "gtl-staging",
-          "database_id": "ee9825df-0fb4-46ab-9802-5b6e23dfa0d8",
-          "migrations_dir": "migrations",
-        },
-      ],
       "vars": {
         "APP_ENV": "staging",
         "VERSION": "dev",
@@ -39,14 +22,6 @@
     },
     "production": {
       "name": "gtl-api",
-      "d1_databases": [
-        {
-          "binding": "DB",
-          "database_name": "gtl-prod",
-          "database_id": "40f95f92-5c88-418c-b11a-9ead2162cd17",
-          "migrations_dir": "migrations",
-        },
-      ],
       "vars": {
         "APP_ENV": "production",
         "VERSION": "dev",
