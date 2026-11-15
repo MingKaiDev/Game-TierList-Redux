@@ -8,8 +8,11 @@
     "deploy:staging": "wrangler deploy --env staging",
     "deploy:production": "wrangler deploy --env production",
     "types": "wrangler types",
-    "typecheck": "wrangler types && tsc -p tsconfig.json",
-    "test": "wrangler types && vitest run"
+    "typecheck": "wrangler types && tsc -p tsconfig.json && tsc -p tsconfig.node.json",
+    "test": "wrangler types && vitest run",
+    "db:migrate:local": "wrangler d1 migrations apply DB --local",
+    "db:migrate:staging": "wrangler d1 migrations apply DB --env staging --remote",
+    "db:migrate:production": "wrangler d1 migrations apply DB --env production --remote"
   },
   "dependencies": {
     "@gtl/shared": "workspace:*",
@@ -17,6 +20,7 @@
   },
   "devDependencies": {
     "@cloudflare/vitest-plugin": "^1.8.2",
+    "@types/node": "^22.19.0",
     "wrangler": "^4.162.0"
   }
 }
