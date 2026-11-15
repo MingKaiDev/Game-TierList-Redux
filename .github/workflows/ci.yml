@@ -66,6 +66,13 @@ jobs:
 
       - run: pnpm install --frozen-lockfile
 
+      # Migrations run before the new code goes live. Write them so the
+      # previous Worker version keeps working (add columns/tables; never
+      # drop or rename in the same PR that stops using them).
+      - name: Apply D1 migrations
+        working-directory: apps/api
+        run: pnpm exec wrangler d1 migrations apply DB --env "$TARGET" --remote
+
       - name: Deploy
         working-directory: apps/api
         run: pnpm exec wrangler deploy --env "$TARGET" --var "VERSION:${GITHUB_SHA::7}"

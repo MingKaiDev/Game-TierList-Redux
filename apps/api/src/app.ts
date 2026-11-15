@@ -3,6 +3,7 @@ import { Hono } from 'hono'
 import { cors } from 'hono/cors'
 import { requestId } from 'hono/request-id'
 import { secureHeaders } from 'hono/secure-headers'
+import { pingDb } from './db'
 import { notFound, onError } from './errors'
 import { isAllowedOrigin } from './origins'
 
@@ -26,14 +27,16 @@ export function createApp() {
 
   const v1 = new Hono<AppEnv>()
 
-  v1.get('/health', (c) => {
+  v1.get('/health', async (c) => {
+    const db = await pingDb(c.env.DB)
     const body: HealthResponse = {
-      status: 'ok',
+      status: db === 'ok' ? 'ok' : 'degraded',
+      db,
       version: c.env.VERSION,
       env: c.env.APP_ENV as HealthResponse['env'],
     }
     c.header('Cache-Control', 'no-store')
-    return c.json(body)
+    return c.json(body, db === 'ok' ? 200 : 503)
   })
 
   app.route('/api/v1', v1)
