@@ -1,0 +1,22 @@
+{
+  "name": "@gtl/api",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy:staging": "wrangler deploy --env staging",
+    "deploy:production": "wrangler deploy --env production",
+    "types": "wrangler types",
+    "typecheck": "wrangler types && tsc -p tsconfig.json",
+    "test": "wrangler types && vitest run"
+  },
+  "dependencies": {
+    "@gtl/shared": "workspace:*",
+    "hono": "^4.13.18"
+  },
+  "devDependencies": {
+    "@cloudflare/vitest-plugin": "^1.8.2",
+    "wrangler": "^4.162.0"
+  }
+}

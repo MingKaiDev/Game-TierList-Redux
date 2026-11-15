@@ -1,0 +1,32 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  // Top level = local development (`pnpm dev`). Deploys always pick an env.
+  "name": "gtl-api-dev",
+  "main": "src/index.ts",
+  "compatibility_date": "2026-11-01",
+  "observability": { "enabled": true },
+  "vars": {
+    "APP_ENV": "local",
+    "VERSION": "dev",
+    "ALLOWED_ORIGINS": "http://localhost:5173",
+  },
+  "env": {
+    "staging": {
+      "name": "gtl-api-staging",
+      "vars": {
+        "APP_ENV": "staging",
+        "VERSION": "dev",
+        // PR previews of the web app live on <hash>.gtl-web.pages.dev
+        "ALLOWED_ORIGINS": "http://localhost:5173,https://*.gtl-web.pages.dev",
+      },
+    },
+    "production": {
+      "name": "gtl-api",
+      "vars": {
+        "APP_ENV": "production",
+        "VERSION": "dev",
+        "ALLOWED_ORIGINS": "https://gtl-web.pages.dev",
+      },
+    },
+  },
+}
