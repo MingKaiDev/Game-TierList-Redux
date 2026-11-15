@@ -1,3 +1,5 @@
+export * from './api'
+
 export const APP_NAME = 'Game Tier List'
 
 /** Tiers in display order, best first. Shared by the API and the web app. */

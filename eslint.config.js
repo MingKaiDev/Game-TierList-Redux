@@ -11,6 +11,7 @@ export default tseslint.config(
       '**/coverage/**',
       '**/node_modules/**',
       '.pnpm-store/**',
+      '**/worker-configuration.d.ts',
     ],
   },
   js.configs.recommended,

@@ -18,7 +18,7 @@ A multi-user web app for logging games, rating them, building shareable tier lis
 ```
 apps/
   web/        React + Vite frontend          (arrives in R0 PR 5)
-  api/        Worker + Hono API, D1 migrations (arrives in R0 PR 3)
+  api/        Worker + Hono API, D1 migrations
 packages/
   shared/     Types and schemas used by both apps
 ```
@@ -40,6 +40,20 @@ pnpm check      # format check, lint, typecheck, tests
 | `pnpm lint`      | ESLint over the whole repo     |
 | `pnpm typecheck` | `tsc` in every package         |
 | `pnpm test`      | Vitest in every package        |
+
+## API
+
+| Environment | URL                                            | Deployed when                   |
+| ----------- | ---------------------------------------------- | ------------------------------- |
+| local       | http://localhost:8787                          | `pnpm dev:api`                  |
+| staging     | https://gtl-api-staging.gaymingkai.workers.dev | every PR (after `check` passes) |
+| production  | https://gtl-api.gaymingkai.workers.dev         | every merge to `main`           |
+
+Health check: `GET /api/v1/health` returns `{ "status": "ok", "version": "<commit>", "env": "<environment>" }`.
+
+Errors always look like `{ "error": { "code": "not_found", "message": "Not found" } }`.
+
+Deploys need two GitHub Actions secrets: `CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID`.
 
 ## Rollouts
 
